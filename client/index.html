@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Collaborative Canvas</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Top toolbar (tools remain global and affect the active canvas) -->
+  <div id="topbar">
+    <div id="tools">
+      <label>Tool:
+        <select id="toolSelect">
+          <option value="brush">Brush</option>
+          <option value="eraser">Eraser</option>
+        </select>
+      </label>
+
+      <label>Color: <input type="color" id="colorPicker" value="#000000" /></label>
+
+      <label>Width:
+        <input id="width" type="range" min="1" max="40" value="4" />
+      </label>
+
+      <button id="undo">Undo</button>
+      <button id="redo">Redo</button>
+    </div>
+
+    <div id="roomInfo">
+      <span id="roomLabel">Room: —</span>
+    </div>
+  </div>
+
+  <!-- Tabs bar + New Canvas button -->
+  <div id="tabsBar" class="tabs-bar">
+    <div id="tabs" class="tabs"></div>
+    <button id="newCanvasBtn" class="tab-new">+ New Canvas</button>
+  </div>
+
+  <!-- Area where canvas instances will be created dynamically -->
+  <div id="multiCanvasArea"></div>
+
+  <!-- Users panel (stays fixed on the right) -->
+  <div id="usersPanel">
+    <h3>Users</h3>
+    <ul id="usersList"></ul>
+  </div>
+
+  <!-- scripts (must be in this order) -->
+  <script src="websocket.js"></script>
+  <script src="canvas.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
