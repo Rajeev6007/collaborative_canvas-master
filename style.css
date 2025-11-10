@@ -1,0 +1,225 @@
+:root {
+  --bg: #f7f7f7;
+  --panel: #fff;
+  --accent: #333;
+  --primary: #3b82f6;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* Global Styles */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 0;
+  background: var(--bg);
+  color: var(--accent);
+  overflow-x: hidden;
+}
+
+/* Top Toolbar */
+#topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  background: var(--panel);
+  box-shadow: 0 2px 6px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#tools label {
+  font-size: 14px;
+  color: #444;
+}
+
+#tools input[type="color"],
+#tools input[type="range"] {
+  cursor: pointer;
+}
+
+/* Tabs bar */
+.tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  background: transparent;
+  flex-wrap: wrap;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.tab:hover {
+  background: #f0f4ff;
+  transform: translateY(-1px);
+}
+
+.tab.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.tab .close {
+  margin-left: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tab-new {
+  padding: 8px 14px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.tab-new:hover {
+  background: #2563eb;
+}
+
+/* Multi-canvas area */
+#multiCanvasArea {
+  padding: 10px 18px;
+  overflow-y: auto;
+  height: calc(100vh - 180px);
+  box-sizing: border-box;
+}
+
+/* Each canvas container */
+.canvas-instance {
+  display: none;
+  position: relative;
+  width: calc(95vw - 240px); /* ensures users panel doesn't overlap */
+  height: 75vh;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--panel);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.canvas-instance.active {
+  display: block;
+}
+
+.canvas-instance canvas {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+  cursor: crosshair;
+}
+
+/* Cursors Layer */
+#cursors {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+.cursor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.1s ease;
+}
+
+.cursor .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* User Panel (right side) */
+#usersPanel {
+  position: fixed;
+  right: 10px;
+  top: 50px;
+  width: 180px;
+  background: var(--panel);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px var(--shadow);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+#usersPanel h3 {
+  margin: 4px 0 10px 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--accent);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 4px;
+  padding-top:2px;
+}
+
+#usersList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#usersList li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+#usersList li:hover {
+  background: rgba(59, 130, 246, 0.05);
+  transition: background 0.2s;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  #usersPanel {
+    display: none;
+  }
+
+  .canvas-instance {
+    width: 95vw;
+    height: 70vh;
+  }
+}
